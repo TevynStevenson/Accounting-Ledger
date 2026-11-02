@@ -37,7 +37,7 @@ public class AccountingLedgerApp {
         //The outputs of each statement will be changed later
             switch (input) {
                 case "A":
-                    System.out.println("Add Deposit Selected");
+                    addDeposit(myScanner);
                     break;
                 case "M":
                     System.out.println("Make Payment Selected");
@@ -93,7 +93,59 @@ public static String displayHomeScreen (Scanner myScanner){
 }
 
 
-//public static int addDeposit (Scanner myScanner){
+public static void addDeposit (Scanner depositScanner){
+        //Initialize scanner
+        //Prompt user to enter desire deposit amount
+        //Store input
+
+        //Prompt user for the amount they want to deposit
+        //
+    System.out.println("How much would you like to deposit?");
+
+    //Store users input
+    //Variable name = depositAmount
+    //Make it .nextDouble because the user will input a $ amount
+    double depositAmount = depositScanner.nextDouble();
+
+    //Prompt user for a short description
+    System.out.println("Short description of your deposit");
+    //Store the answer
+    String depositDescription = depositScanner.nextLine().toUpperCase();
+
+    //Go to the next line
+    depositScanner.nextLine();
+
+    //Prompt the user for the Vendor
+    System.out.println("Vendor");
+    //Store the answer
+    String vendor = depositScanner.nextLine().toUpperCase();
+
+    //Add try/catch statement to transfer user input into Transactions.csv file
+    //Will need to implement FileWriter and BufferedWriter
+    //Catch exception e, runtimeException, ioException
+    //When constructing the filewriter dont forget file name, and true to make sure it appends
+
+    try {
+        FileWriter fileWriter = new FileWriter("transactions.csv", true);
+
+    //Add bufferedWriter
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+    //Users transaction information will go here
+    //Close the buffered writer
+    bufferedWriter.close();
+
+    //Add catch statement
+    } catch (IOException e) {
+        System.out.println("Error writing to file");
+        throw new RuntimeException(e);
+    }
+
+
+
+
+
+}
 
 
 
