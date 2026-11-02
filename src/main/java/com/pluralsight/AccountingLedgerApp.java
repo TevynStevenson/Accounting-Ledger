@@ -21,7 +21,27 @@ public class AccountingLedgerApp {
         //Introduce scanner to this method
         Scanner myScanner = new Scanner(System.in);
 
+        //Add a loop around the home screen menu
+        //The app should stop when the user enter (E)xit
+        //Add boolean to keep app running until false
+
+        boolean menuRunning = true;
+        while(menuRunning){
         displayHomeScreen(myScanner);
+
+        //Add scanner for users input
+        //Variable name input
+        //Make it a char
+
+
+        //Add case switch statements
+        //Case includes (A)dd , (M) , (L) , (E)
+
+
+
+
+
+        }
 
 
 
