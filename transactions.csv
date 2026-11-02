@@ -1,0 +1,8 @@
+// For Transactions
+// Adding sample transactions for testing
+Date       | Type    | Description    | Vendor   | Amount
+2024-01-15 | Deposit | Paycheck       | Employer | 1500.00
+2024-02-03 | Payment | Groceries      | Walmart  | -75.50
+2024-03-10 | Deposit | Birthday Money | Family   | 100.00
+2025-05-22 | Payment | Gas            | Shell    | -40.00
+2026-08-14 | Payment | Phone Bill     | Verizon  | -65.00
