@@ -22,20 +22,37 @@ public class AccountingLedgerApp {
         Scanner myScanner = new Scanner(System.in);
 
         //Add a loop around the home screen menu
-        //The app should stop when the user enter (E)xit
+        //The app should stop when the user enter (X)Exit
         //Add boolean to keep app running until false
 
         boolean menuRunning = true;
         while(menuRunning){
-        displayHomeScreen(myScanner);
 
-        //Add scanner for users input
         //Variable name input
-        //Make it a char
-
+        //Make it a String
+            String input = displayHomeScreen(myScanner);
 
         //Add case switch statements
         //Case includes (A)dd , (M) , (L) , (E)
+        //The outputs of each statement will be changed later
+            switch (input) {
+                case "A":
+                    System.out.println("Add Deposit Selected");
+                    break;
+                case "M":
+                    System.out.println("Make Payment Selected");
+                    break;
+                case "L":
+                    System.out.println("Display Ledger Selected");
+                    break;
+                case "X":
+                        System.out.println("Exiting Application");
+                        menuRunning = false;
+                        break;
+                default:
+                    System.out.println("Invalid Selection. Please try again");
+                    break;
+            }
 
 
 
@@ -67,13 +84,18 @@ public static String displayHomeScreen (Scanner myScanner){
             (A)dd Deposit
             (M)ake Payment
             (L)edger
-            (E)xit""");
+            (X)Exit""");
     //Save users input
 
     //return users input
-    return myScanner.nextLine();
+    return myScanner.nextLine().toUpperCase();
 
 }
+
+
+//public static int addDeposit (Scanner myScanner){
+
+
 
 
 
