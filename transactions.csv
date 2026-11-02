@@ -2,7 +2,7 @@
 // Adding sample transactions for testing
 // Will add more samples in the future, to go along with checklist
 
-Date|Type|Description|Vendor|Amount
+Date|Time|Type|Description|Vendor|Amount
 
 Date       |Time      | Type    | Description    | Vendor   | Amount
 2024-01-15 |10:26:50  | Deposit | Paycheck       | Employer | 1500.00
@@ -10,3 +10,6 @@ Date       |Time      | Type    | Description    | Vendor   | Amount
 2024-03-10 |12:00:30  | Deposit | Birthday Money | Family   | 100.00
 2025-05-22 |9:02:14   | Payment | Gas            | Shell    | -40.00
 2026-08-14 |3:40:10   | Payment | Phone Bill     | Verizon  | -65.00
+2026-11-02 | 15:47    | Deposit | IPHONE         | T-MOBILE | 10
+2026-11-02 | 15:49 | Deposit | IPHONE | T-MOBILE | 1000.
+2026-11-02 | 15:51 | Deposit | SHOES | NIKE | $ 1000.25
