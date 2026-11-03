@@ -12,6 +12,7 @@ import java.util.*;
 import java.io.*;
 
 
+
 public class AccountingLedgerApp {
 
     //Main Method
@@ -298,12 +299,28 @@ public class AccountingLedgerApp {
             return;
         }
 
-        //For loop to run until there are no more transactions
-        for (Transaction transaction : transactions) {
-            System.out.println(transaction.toString());
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+
+            //For loop to run until there are no more transactions
+            for (Transaction transaction : transactions) {
+                System.out.println(transaction.toString());
+            }
+
         }
+
+
+
 
     }
 
 
-}
+
