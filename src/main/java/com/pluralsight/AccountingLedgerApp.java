@@ -48,7 +48,6 @@ public class AccountingLedgerApp {
                     break;
                 case "L":
                     displayLedgerMenu(myScanner);
-                    menuRunning = false;
                     break;
                 case "X":
                     System.out.println("Exiting Application");
@@ -322,7 +321,7 @@ public class AccountingLedgerApp {
     //Make a displayLedgerMenu method
     //Reference displayHomeScreen
     //Connect the All option to display every transaction
-    public static void displayLedgerMenu(Scanner myScanner) {
+    public static String displayLedgerScreen(Scanner myScanner) {
 
         //Add scanner
         myScanner = new Scanner(System.in);
@@ -341,8 +340,42 @@ public class AccountingLedgerApp {
                 (L) Exit""");
         //Save users input
         //toUpperCase so capitalization doesn't matter
-        myScanner.nextLine();
 
+        return myScanner.nextLine().toUpperCase();
+    }
+
+    //method for displayLedgerMenu options menu
+    //Name displayLedgerMenu
+    public static void displayLedgerMenu(Scanner myScanner){
+
+        //Initialize boolean statement to keep running until exited
+        boolean appRunning = true;
+        while (appRunning) {
+
+            //Display the Ledger menu
+            //Capture user input
+            String input = displayLedgerScreen(myScanner);
+
+            //Add switch statements
+            switch (input){
+                case "A":
+                    displayTransactions(readTransactions());
+                    break;
+                case "D":
+                    System.out.println("Deposit");
+                case "P":
+                    System.out.println("Payment");
+                case "R":
+                    System.out.println("Report");
+                case "L":
+                    System.out.println("Thank you for using the Ledger Menu");
+                    appRunning = false;
+                    break;
+                default:
+                    System.out.println("Invalid input");
+
+            }
+        }
     }
 
 
