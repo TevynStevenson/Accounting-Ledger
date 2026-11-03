@@ -37,7 +37,7 @@ public class AccountingLedgerApp {
             String input = displayHomeScreen(myScanner);
 
             //Add case switch statements
-            //Case includes (D)dd , (P) , (L) , (E)
+            //Case includes (D) , (P) , (L) , (E)
             //The outputs of each statement will be changed later
             switch (input) {
                 case "D":
@@ -47,7 +47,8 @@ public class AccountingLedgerApp {
                     makePayment(myScanner);
                     break;
                 case "L":
-                    displayTransactions(readTransactions());
+                    displayLedgerMenu(myScanner);
+                    menuRunning = false;
                     break;
                 case "X":
                     System.out.println("Exiting Application");
@@ -80,7 +81,7 @@ public class AccountingLedgerApp {
 
         //Prompt user to input selection
         System.out.println("""
-                Which option would you like to choose? :
+                Which option would you like to choose?
                 (D)Add Deposit
                 (P)Make Payment
                 (L)Ledger
@@ -310,17 +311,46 @@ public class AccountingLedgerApp {
         );
 
 
-            //For loop to run until there are no more transactions
-            for (Transaction transaction : transactions) {
-                System.out.println(transaction.toString());
-            }
-
+        //For loop to run until there are no more transactions
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toString());
         }
-
-
-
 
     }
 
+
+    //Make a displayLedgerMenu method
+    //Reference displayHomeScreen
+    //Connect the All option to display every transaction
+    public static void displayLedgerMenu(Scanner myScanner) {
+
+        //Add scanner
+        myScanner = new Scanner(System.in);
+
+        //Welcome user
+        System.out.println("====== Welcome To The Ledger Menu ======");
+
+        //Prompt user for input selection
+        //Selections : A,D,P,R, and H
+        System.out.println("""
+                Which option would you like to choose?
+                (A) All Transactions
+                (D) Deposits
+                (P) Payments
+                (R) Reports
+                (L) Exit""");
+        //Save users input
+        //toUpperCase so capitalization doesn't matter
+        myScanner.nextLine();
+
+    }
+
+
+
+
+
+
+
+}
 
 
