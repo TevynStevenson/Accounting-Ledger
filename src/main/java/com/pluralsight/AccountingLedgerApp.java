@@ -6,6 +6,7 @@ package com.pluralsight;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.*;
 import java.io.*;
@@ -35,14 +36,14 @@ public class AccountingLedgerApp {
             String input = displayHomeScreen(myScanner);
 
             //Add case switch statements
-            //Case includes (A)dd , (M) , (L) , (E)
+            //Case includes (D)dd , (P) , (L) , (E)
             //The outputs of each statement will be changed later
             switch (input) {
-                case "A":
+                case "D":
                     addDeposit(myScanner);
                     break;
-                case "M":
-                    System.out.println("Make Payment Selected");
+                case "P":
+                    makePayment(myScanner);
                     break;
                 case "L":
                     System.out.println("Display Ledger Selected");
@@ -79,9 +80,9 @@ public class AccountingLedgerApp {
         //Prompt user to input selection
         System.out.println("""
                 Which option would you like to choose? :
-                (A)dd Deposit
-                (M)ake Payment
-                (L)edger
+                (D)Add Deposit
+                (P)Make Payment
+                (L)Ledger
                 (X)Exit""");
         //Save users input
 
@@ -95,9 +96,8 @@ public class AccountingLedgerApp {
         //Initialize scanner
         //Prompt user to enter desire deposit amount
         //Store input
-
         //Prompt user for the amount they want to deposit
-        //
+
         System.out.println("How much would you like to deposit?");
 
         //Store users input
@@ -109,8 +109,6 @@ public class AccountingLedgerApp {
         System.out.println("Short description of your deposit");
         //Store the answer
         String depositDescription = depositScanner.nextLine().toUpperCase();
-
-        //Go to the next line
 
 
         //Prompt the user for the Vendor
@@ -128,14 +126,18 @@ public class AccountingLedgerApp {
             //Import LocalTime
             LocalDate date = LocalDate.now();
             LocalTime time = LocalTime.now();
-            String description;
-            double amount;
 
-            //Add bufferedWriter (Can do it all in one line to save time
+            //Format the time
+            //Add date time formatter ("HH:mm:ss:")
+            //formattedTime will be variable name
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String formattedTime = time.format(formatter);
+
+            //Add bufferedWriter (Can do it all in one line to save time)
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
 
             //Initialize variable for "line"
-            String line = String.format("%s | %.5s | Deposit | %s | %s | $ %s\n", date, time, depositDescription, vendor, depositAmount);
+            String line = String.format("%s | %s | Deposit | %s | %s | $%s\n", date, formattedTime, depositDescription, vendor, depositAmount);
 
             //Allow user to write to the .csv file
             bufferedWriter.write(line);
@@ -150,7 +152,73 @@ public class AccountingLedgerApp {
             throw new RuntimeException(e);
         }
 
+        System.out.println("Your deposit has been added to the transaction list");
+    }
 
+
+    //Create a make payment method
+    //Payments must be stored as negative
+    //Either require a negative amount or convert it to negative
+    public static void makePayment(Scanner paymentScanner) {
+        //Initialize scanner
+        //Prompt user to enter desire deposit amount
+        //Store input
+        //Prompt user for the description
+        System.out.println("How much for the payment?");
+
+        //Store users input
+        //Variable name = paymentAmount
+        //Make it .nextDouble because the user will input a $ amount
+
+        String paymentAmount = paymentScanner.nextLine();
+
+        //Prompt user for a short description
+        System.out.println("Short description of your payment");
+        //Store the answer
+        String paymentDescription = paymentScanner.nextLine().toUpperCase();
+
+        //Prompt the user for the Vendor
+        System.out.println("Vendor");
+        //Store the answer
+        String vendor = paymentScanner.nextLine().toUpperCase();
+
+        //Add try/catch statement to transfer user input into Transactions.csv file
+        //Will need to implement FileWriter and BufferedWriter
+        //Catch exception e, runtimeException, ioException
+        //When constructing the filewriter dont forget file name, and true to make sure it appends
+
+        try {
+            //Import localDate
+            //Import LocalTime
+            LocalDate date = LocalDate.now();
+            LocalTime time = LocalTime.now();
+
+            //Format the time
+            //Add date time formatter ("HH:mm:ss:")
+            //formattedTime will be variable name
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String formattedTime = time.format(formatter);
+
+            //Add bufferedWriter (Can do it all in one line to save time
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
+
+            //Initialize variable for "line"
+            String line = String.format("%s | %s | Payment | %s | %s | $-%s\n", date, formattedTime, paymentDescription, vendor, paymentAmount);
+
+            //Allow user to write to the .csv file
+            bufferedWriter.write(line);
+
+            //Users transaction information will go here
+            //Close the buffered writer
+            bufferedWriter.close();
+
+            //Add catch statement
+        } catch (IOException e) {
+            System.out.println("Error writing to file");
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Your payment has been added to the transaction list");
     }
 
 

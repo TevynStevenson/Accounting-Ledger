@@ -4,12 +4,21 @@
 
 Date|Time|Type|Description|Vendor|Amount
 
-Date       |Time      | Type    | Description    | Vendor   | Amount
-2024-01-15 |10:26:50  | Deposit | Paycheck       | Employer | 1500.00
-2024-02-03 |5:30:46   | Payment | Groceries      | Walmart  |-75.50
-2024-03-10 |12:00:30  | Deposit | Birthday Money | Family   | 100.00
-2025-05-22 |9:02:14   | Payment | Gas            | Shell    | -40.00
-2026-08-14 |3:40:10   | Payment | Phone Bill     | Verizon  | -65.00
-2026-11-02 | 15:47    | Deposit | IPHONE         | T-MOBILE | 10
+Date       |Time   | Type    | Description    | Vendor   | Amount
+2024-01-15 |10:26:50| Deposit | Paycheck       | Employer | 1500.00
+2024-02-03 |5:30:46| Payment | Groceries      | Walmart  |-75.50
+2024-03-10 |12:00:30| Deposit | Birthday Money | Family   | 100.00
+2025-05-22 |9:02:14| Payment | Gas            | Shell    | -40.00
+2026-08-14 |3:40:10| Payment | Phone Bill     | Verizon  | -65.00
+2026-11-02 | 15:47 | Deposit | IPHONE         | T-MOBILE | 10
 2026-11-02 | 15:49 | Deposit | IPHONE | T-MOBILE | 1000.
 2026-11-02 | 15:51 | Deposit | SHOES | NIKE | $ 1000.25
+2026-11-03 | 08:52 | Deposit | BANK | BANK OF AMERICA | $ 1000.00
+2026-11-03 | 08:52 | Deposit | SHOES | NIKE | $ 2000.00
+2026-11-03 | 08:55 | Deposit | CAR PAYMENT | TOYOTA | $ 3000.00
+2026-11-03 | 09:10 | Payment | GAMING CONSOLE | XBOX | $ -1000.25
+2026-11-03 | 09:15 | Payment | PHONE BILL | VERIZON | $ -200.25
+2026-11-03 | 09:28:19 | Payment | LIGHT BILL | LIGHTS UNITED | $ -100.20
+2026-11-03 | 09:32:57 | Deposit | LIGHT BILL | LIGHTS UNITED | $ 100.00
+2026-11-03 | 09:33:17 | Payment | GAMING | SONY | $ -100.25
+2026-11-03 | 09:45:18 | Deposit | CAR PAYMENT | TOYOTA | $2500.00
