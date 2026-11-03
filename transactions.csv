@@ -1,10 +1,3 @@
-// For Transactions
-// Adding sample transactions for testing
-// Will add more samples in the future, to go along with checklist
-
-Date|Time|Type|Description|Vendor|Amount
-
-Date       |Time   | Type    | Description    | Vendor   | Amount
 2024-01-15 |10:26:50| Deposit | Paycheck       | Employer | 1500.00
 2024-02-03 |5:30:46| Payment | Groceries      | Walmart  |-75.50
 2024-03-10 |12:00:30| Deposit | Birthday Money | Family   | 100.00
@@ -23,3 +16,5 @@ Date       |Time   | Type    | Description    | Vendor   | Amount
 2026-11-03 | 09:33:17 | Payment | GAMING | SONY | $ -100.25
 2026-11-03 | 09:45:18 | Deposit | CAR PAYMENT | TOYOTA | $2500.00
 2026-11-03 | 10:47:31 | Deposit | RENT | THE APARTMENTS | $1000.75
+2026-11-03 | 12:45:23 | Deposit | CAR PAYMENT | TOYOTA | $1000.00
+2026-11-03 | 13:24:05 | Deposit | SHOES | NIKE | $1000.00

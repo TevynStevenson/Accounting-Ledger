@@ -46,7 +46,7 @@ public class AccountingLedgerApp {
                     makePayment(myScanner);
                     break;
                 case "L":
-                    System.out.println("Display Ledger Selected");
+                    displayTransactions(readTransactions());
                     break;
                 case "X":
                     System.out.println("Exiting Application");
@@ -152,6 +152,7 @@ public class AccountingLedgerApp {
             throw new RuntimeException(e);
         }
 
+        //Print out message for successful deposit
         System.out.println("Your deposit has been added to the transaction list");
     }
 
@@ -228,54 +229,80 @@ public class AccountingLedgerApp {
     //Use ("\\|") to split
     public static ArrayList<Transaction> readTransactions() {
 
+        //Initialize new transactions
         ArrayList<Transaction> transactions = new ArrayList<>();
 
         try {
-            LocalDate date = LocalDate.now();
-            LocalTime time = LocalTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            String formattedTime = time.format(formatter);
 
+            //Initialize the FileReader before the BufferedReader
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
+            //Don't declare a variable or while loop won't run
             String line;
+
 
             //Add while loop to run until there are no more transactions
             while ((line = bufferedReader.readLine()) != null) {
 
+
                 //Split the inventory by the (|) pipe
-                String[] transactionData = getTransactionData(line, formatter);
+                String[] transactionData = line.split("\\|");
 
-                //Parse the full transaction amount because it will be a double
-                double transactionAmount = Double.parseDouble(transactionData[4]);
+                //if (transactionData.length != 6) {
+                // continue;
+                //  }
 
+                // Remove unnecessary spaces
+                String date = transactionData[0];
+                String time = transactionData[1].trim();
 
-                //Initialize new transaction for added transactions
-                Transaction addedTransaction = new Transaction(line);
+                // Extract transaction information
+                String type = transactionData[2].trim();
+                String description = transactionData[3].trim();
+                String vendor = transactionData[4].trim();
 
+                // Parse transaction amount because Doubles aren't Strings
+                double amount = Double.parseDouble(
+                        transactionData[5].trim().replace("$", "")
+                );
+
+                // Create new Transaction object
+                Transaction addedTransaction = new Transaction(
+                        date, time, type + " | " + description, vendor, amount
+                );
+
+                // Add transaction to ArrayList
+                transactions.add(addedTransaction);
             }
+
+            //Must close bufferedReader
+            bufferedReader.close();
 
         } catch (Exception e) {
             System.out.println("Error reading file");
             throw new RuntimeException(e);
         }
+
+        //Return the output
         return transactions;
     }
 
-    private static String[] getTransactionData(String line, DateTimeFormatter formatter) {
-        String[] transactionData = line.split("\\|");
 
-        //Have to parse for ints and doubles
-        //They arent strings so must convert
-        //Parse date and time because they are Integers being converted into Strings
-        LocalDate transactionDate = LocalDate.parse(transactionData[0], formatter);
-        LocalTime transactionTime = LocalTime.parse(transactionData[1], formatter);
+    //Create a displayTransactions() menu
+    //Use a loop for the ArrayList
+    public static void displayTransactions(ArrayList<Transaction> transactions) {
+        //If statement for if the list is empty
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions found");
+            return;
+        }
 
-        //Strings do not need to be parsed
-        String transactionDescription = transactionData[2];
-        String transactionVendor = transactionData[3];
-        return transactionData;
+        //For loop to run until there are no more transactions
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toString());
+        }
+
     }
 
 
