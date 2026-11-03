@@ -222,4 +222,61 @@ public class AccountingLedgerApp {
     }
 
 
+    //Create a method to read transactions from transactions.csv
+    //FileReader/BufferedReader
+    //Call FileReader first, surround with try catch statement
+    //Use ("\\|") to split
+    public static ArrayList<Transaction> readTransactions() {
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        try {
+            LocalDate date = LocalDate.now();
+            LocalTime time = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String formattedTime = time.format(formatter);
+
+            FileReader fileReader = new FileReader("transactions.csv");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+
+            //Add while loop to run until there are no more transactions
+            while ((line = bufferedReader.readLine()) != null) {
+
+                //Split the inventory by the (|) pipe
+                String[] transactionData = getTransactionData(line, formatter);
+
+                //Parse the full transaction amount because it will be a double
+                double transactionAmount = Double.parseDouble(transactionData[4]);
+
+
+                //Initialize new transaction for added transactions
+                Transaction addedTransaction = new Transaction(line);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error reading file");
+            throw new RuntimeException(e);
+        }
+        return transactions;
+    }
+
+    private static String[] getTransactionData(String line, DateTimeFormatter formatter) {
+        String[] transactionData = line.split("\\|");
+
+        //Have to parse for ints and doubles
+        //They arent strings so must convert
+        //Parse date and time because they are Integers being converted into Strings
+        LocalDate transactionDate = LocalDate.parse(transactionData[0], formatter);
+        LocalTime transactionTime = LocalTime.parse(transactionData[1], formatter);
+
+        //Strings do not need to be parsed
+        String transactionDescription = transactionData[2];
+        String transactionVendor = transactionData[3];
+        return transactionData;
+    }
+
+
 }

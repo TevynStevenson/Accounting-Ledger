@@ -23,7 +23,7 @@ public class Transaction {
     //Initialize constructor
 
 
-    public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
+    public Transaction(String description) {
         this.date = date;
         this.time = time;
         this.description = description;
