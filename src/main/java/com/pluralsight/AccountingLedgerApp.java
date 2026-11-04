@@ -817,7 +817,8 @@ public class AccountingLedgerApp {
                     displaySearchByVendor(readTransactions());
                     break;
                 case "A":
-                    System.out.println("Custom Search");
+                    searchByAmount(readTransactions());
+                    break;
                 case "L":
                     System.out.println("Leaving Custom Search");
                     return false;
@@ -834,7 +835,8 @@ public class AccountingLedgerApp {
         return false;
     }
 
-
+    //Add a method to search by description
+    //Void doesn't need return
     public static void searchByDescription(ArrayList<Transaction> transactions) {
 
         //Prompt user to input vendor
@@ -870,6 +872,50 @@ public class AccountingLedgerApp {
         }
 
     }
+
+
+   //Add a search by amount method
+    public static void searchByAmount(ArrayList<Transaction> transactions) {
+
+        //Introduce scanner
+        Scanner myScanner = new Scanner(System.in);
+
+        //Prompt user to enter amount
+        //Welcome message
+        System.out.println("====== Welcome To The Search By Amount=====");
+        System.out.println("Enter amount of the transaction");
+
+        //Save users input
+        double amount = myScanner.nextDouble();
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop
+        for (Transaction transaction : transactions) {
+
+            //Add if statement
+            if (transaction.getAmount() == amount) {
+
+                System.out.println(transaction);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
     //End of methods
 }
 
