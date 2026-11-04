@@ -64,13 +64,12 @@ public class AccountingLedgerApp {
     }
 
 
-    // Other methods created
-    //Call these methods to main method when completed
-    public static String displayHomeScreen(Scanner myScanner) {
+        // Other methods created
+        //Call these methods to main method when completed
         //Add scanner
         // Welcome screen, prompt user to input selection
         //Selections include (A)dd Deposit | (M)ake Payment | (L)edger | (E)xit
-
+        public static String displayHomeScreen(Scanner myScanner) {
         //Introduce new Scanner named myScanner
         myScanner = new Scanner(System.in);
 
@@ -812,7 +811,7 @@ public class AccountingLedgerApp {
                     System.out.println("Custom Search");
                     break;
                 case "D":
-                    System.out.println("Custom Search");
+                    searchByDescription(readTransactions());
                     break;
                 case "V":
                     displaySearchByVendor(readTransactions());
@@ -836,6 +835,41 @@ public class AccountingLedgerApp {
     }
 
 
+    public static void searchByDescription(ArrayList<Transaction> transactions) {
+
+        //Prompt user to input vendor
+        Scanner myScanner = new Scanner(System.in);
+
+        //Welcome message
+        System.out.println("====== Welcome To The Search By Description ======");
+        System.out.println("Enter description of the transaction");
+
+        //Store the users input
+        String description = myScanner.nextLine();
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop
+        for (Transaction transaction : transactions) {
+
+            //Use .contains to see if description matches users input
+            //To lowercase to make capitalization not matter
+            if (transaction.getDescription().toLowerCase().contains(description.toLowerCase())) {
+
+
+                System.out.println(transaction);
+            }
+        }
+
+    }
     //End of methods
 }
 
