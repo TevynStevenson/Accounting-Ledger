@@ -486,12 +486,15 @@ public class AccountingLedgerApp {
     //boolean statement run the while loop
     //while loop to keep app running until exited
     public static void displayReportMenu(Scanner myScanner) {
+        //Add arrayList
+
+
         boolean appRunning = true;
         while (appRunning) {
             String input = displayReportScreen(myScanner);
             switch (input) {
                 case "1":
-                    System.out.println("Month To Date");
+                    displayMonthToDate(readTransactions());
                     break;
                 case "2":
                     System.out.println("Previous Month To Date");
@@ -516,7 +519,61 @@ public class AccountingLedgerApp {
         }
     }
 
+    //Create a report that display transactions
+    //First day of the current month through today's date
+    //LocalDate.Now() to get todays date
+    //.withDayOfMonth(1) to get first day of current month
+    public static void displayMonthToDate(ArrayList<Transaction>transactions){
 
+        //Get the first day of the month
+        LocalDate today = LocalDate.now();
+
+        //Get first day of month
+        LocalDate startOfMonth = today.withDayOfMonth(1);
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Loops though all of the transactions
+        for (Transaction transaction : transactions) {
+
+            //Get the date of the current transaction
+            LocalDate transactionDate = transaction.getDate();
+
+            //Make an if statement to get the month to date
+            if (!transactionDate.isBefore(startOfMonth) && !transactionDate.isAfter(today)) {
+
+                //Display Transaction
+                System.out.println(transaction);
+
+
+            }
+        }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+//End of methods
 }
+
+
+
 
 
