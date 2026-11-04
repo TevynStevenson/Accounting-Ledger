@@ -64,17 +64,49 @@ public class AccountingLedgerApp {
     }
 
 
-        // Other methods created
-        //Call these methods to main method when completed
-        //Add scanner
-        // Welcome screen, prompt user to input selection
-        //Selections include (A)dd Deposit | (M)ake Payment | (L)edger | (E)xit
-        public static String displayHomeScreen(Scanner myScanner) {
+    // Other methods created
+    //Call these methods to main method when completed
+    //Add scanner
+    // Welcome screen, prompt user to input selection
+    //Selections include (A)dd Deposit | (M)ake Payment | (L)edger | (E)xit
+    public static String displayHomeScreen(Scanner myScanner) {
         //Introduce new Scanner named myScanner
         myScanner = new Scanner(System.in);
 
         // Welcome user to the app
-        System.out.println("====== Welcome To The Banking Supreme App ====== \n");
+        //Adding a little flair to the project
+        //Title Banking Supreme
+
+        //Add try/catch to be able to delay messages
+        try {
+            System.out.println("==================================================");
+            Thread.sleep(500);
+            System.out.println("                                                    ");
+
+            System.out.println("           BANKING SUPREME  |  EST. 2026           ");
+            Thread.sleep(500);
+            System.out.println("                                                    ");
+
+            System.out.println("             YOUR FINANCES. YOUR CONTROL.          ");
+            Thread.sleep(500);
+            System.out.println("                                                    ");
+            System.out.println("==================================================");
+            Thread.sleep(700);
+            System.out.println("             SECURE BANKING PORTAL                 ");
+            System.out.println();
+
+            //Add real banking initialization
+            //Initializing, Loading, Secure session
+            System.out.println("[SYSTEM] Initializing Banking Supreme....");
+            Thread.sleep(1000);
+            System.out.println("[SYSTEM] Financial Ledger Loading........");
+            Thread.sleep(1000);
+            System.out.println("[SYSTEM] Secure session ready!\n");
+            Thread.sleep(1500);
+
+        } catch (InterruptedException e) {
+            System.out.println("[SYSTEM] System initialization interrupted");
+        }
 
         //Prompt user to input selection
         System.out.println("""
@@ -322,8 +354,33 @@ public class AccountingLedgerApp {
         //Add scanner
         myScanner = new Scanner(System.in);
 
-        //Welcome user
-        System.out.println("====== Welcome To The Ledger Menu ======");
+        //Add flair
+        //Add try/catch statement to be able to run Thread.sleep()
+
+        try {
+
+            //Add loading prompt;
+            System.out.println("[SYSTEM] Ledger menu loading... please wait \n");
+            Thread.sleep(2000);
+
+
+            //Welcome user
+            System.out.println("======================================= ");
+            Thread.sleep(500);
+            System.out.println("                                        ");
+            System.out.println("                                        ");
+            System.out.println("       Welcome To The Ledger Menu       ");
+            Thread.sleep(500);
+            System.out.println("                                        ");
+            System.out.println("                                        ");
+            Thread.sleep(500);
+            System.out.println("======================================= \n");
+            Thread.sleep(1500);
+
+            //Add catch statement to allow Thread.sleep() to run
+        } catch (InterruptedException e) {
+            System.out.println("Error loading menu");
+        }
 
         //Prompt user for input selection
         //Selections : A,D,P,R, and H
@@ -521,6 +578,14 @@ public class AccountingLedgerApp {
                     if (CustomSearchMenu(myScanner)) {
                         return true;
                     }
+                    break;
+                case "9":
+                    System.out.println("================================");
+                    System.out.println("      BANKING SUPREME           ");
+                    System.out.println("   Created by: Tevyn Stevenson  ");
+                    System.out.println("   Java Developer in Training   ");
+                    System.out.println("     Built with Java!           ");
+                    System.out.println("================================");
                     break;
                 case "0":
                     System.out.println("Exiting the Report Menu");
@@ -874,7 +939,7 @@ public class AccountingLedgerApp {
     }
 
 
-   //Add a search by amount method
+    //Add a search by amount method
     public static void searchByAmount(ArrayList<Transaction> transactions) {
 
         //Introduce scanner
@@ -953,7 +1018,7 @@ public class AccountingLedgerApp {
 
     //Make a method to search by end date
     //Will have to parse to get the correct output
-    public static void searchByEndDate(ArrayList<Transaction>transactions){
+    public static void searchByEndDate(ArrayList<Transaction> transactions) {
 
         //Initialize scanner
         Scanner myScanner = new Scanner(System.in);
@@ -989,11 +1054,6 @@ public class AccountingLedgerApp {
 
 
     }
-
-
-
-
-
 
 
     //End of methods
