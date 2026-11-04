@@ -12,7 +12,6 @@ import java.util.*;
 import java.io.*;
 
 
-
 public class AccountingLedgerApp {
 
     //Main Method
@@ -92,7 +91,8 @@ public class AccountingLedgerApp {
 
     }
 
-
+    //Method for switch statement D
+    //Allow user to add a deposit to the .csv file
     public static void addDeposit(Scanner depositScanner) {
         //Initialize scanner
         //Prompt user to enter desire deposit amount
@@ -223,7 +223,6 @@ public class AccountingLedgerApp {
         System.out.println("Your payment has been added to the transaction list");
     }
 
-
     //Create a method to read transactions from transactions.csv
     //FileReader/BufferedReader
     //Call FileReader first, surround with try catch statement
@@ -289,7 +288,6 @@ public class AccountingLedgerApp {
         return transactions;
     }
 
-
     //Create a displayTransactions() menu
     //Use a loop for the ArrayList
     public static void displayTransactions(ArrayList<Transaction> transactions) {
@@ -316,7 +314,6 @@ public class AccountingLedgerApp {
         }
 
     }
-
 
     //Make a displayLedgerMenu method
     //Reference displayHomeScreen
@@ -346,7 +343,9 @@ public class AccountingLedgerApp {
 
     //method for displayLedgerMenu options menu
     //Name displayLedgerMenu
-    public static void displayLedgerMenu(Scanner myScanner){
+    //boolean statement to run while loop
+    //While loop to keep app running until exited
+    public static void displayLedgerMenu(Scanner myScanner) {
 
         //Initialize boolean statement to keep running until exited
         boolean appRunning = true;
@@ -357,7 +356,7 @@ public class AccountingLedgerApp {
             String input = displayLedgerScreen(myScanner);
 
             //Add switch statements
-            switch (input){
+            switch (input) {
                 case "A":
                     displayTransactions(readTransactions());
                     break;
@@ -368,7 +367,7 @@ public class AccountingLedgerApp {
                     displayTransactions(readPayments());
                     break;
                 case "R":
-                    System.out.println("Report");
+                    displayReportMenu(myScanner);
                     break;
                 case "L":
                     System.out.println("Thank you for using the Ledger Menu");
@@ -392,22 +391,33 @@ public class AccountingLedgerApp {
         //Get all the transactions from the csv file
         ArrayList<Transaction> transactions = readTransactions();
 
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
         //Loop through all of the transactions
         for (Transaction transaction : transactions) {
 
             //Check if the amount is positive
-            if (transaction.getAmount() > 0){
+            if (transaction.getAmount() > 0) {
 
                 //If positive, it will be added to the deposits arraylist
                 deposits.add(transaction);
-        }
+            }
 
-    }
+        }
         //Return the deposits arrayList
         return deposits;
 
 
-}
+    }
+
     //Create a method to filter and display deposits only
     //Use an if statement to check whether the amount is >0
     //Return a new ArrayList
@@ -418,11 +428,21 @@ public class AccountingLedgerApp {
         //Get all the transactions from the csv file
         ArrayList<Transaction> transactions = readTransactions();
 
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
         //Loop through all of the transactions
         for (Transaction transaction : transactions) {
 
             //Check if the amount is positive
-            if (transaction.getAmount() < 0){
+            if (transaction.getAmount() < 0) {
 
                 //If positive, it will be added to the deposits arraylist
                 payments.add(transaction);
@@ -435,16 +455,66 @@ public class AccountingLedgerApp {
 
     }
 
+    //Create a seperate reports menu that displays all available reporting options
+    //Allow users to select date based reports, vendor searches, etc
+    public static String displayReportScreen(Scanner myScanner) {
+        //Add scanner
+        myScanner = new Scanner(System.in);
 
+        //Welcome user
+        System.out.println("====== Welcome To The Reports Menu ======");
 
+        //Prompt user for input selection
+        //Selections : 1,2,3,4,5 and 0 to exit
+        System.out.println("""
+                Which option would you like to choose?
+                (1) Month To Date
+                (2) Previous Month To Date
+                (3) Year To Date
+                (4) Previous Year To Date
+                (5) Search By Vendor
+                (0) Exit""");
+        //Save users input
+        //toUpperCase so capitalization doesn't matter
 
+        return myScanner.nextLine().toUpperCase();
 
+    }
 
+    //Method for displaying reportsMenu
+    //Add switch statement
+    //boolean statement run the while loop
+    //while loop to keep app running until exited
+    public static void displayReportMenu(Scanner myScanner) {
+        boolean appRunning = true;
+        while (appRunning) {
+            String input = displayReportScreen(myScanner);
+            switch (input) {
+                case "1":
+                    System.out.println("Month To Date");
+                    break;
+                case "2":
+                    System.out.println("Previous Month To Date");
+                    break;
+                case "3":
+                    System.out.println("Year To Date");
+                    break;
+                case "4":
+                    System.out.println("Previous Year To Date");
+                    break;
+                case "5":
+                    System.out.println("Search By Vendor");
+                    break;
+                case "0":
+                    System.out.println("Exiting the Report Menu");
+                    appRunning = false;
+                    break;
+                default:
+                    System.out.println("Invalid input");
 
-
-
-
-
+            }
+        }
+    }
 
 
 }
