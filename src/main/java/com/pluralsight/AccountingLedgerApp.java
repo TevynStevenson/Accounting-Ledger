@@ -368,7 +368,7 @@ public class AccountingLedgerApp {
                     displayTransactions(readPayments());
                     break;
                 case "R":
-                    if (displayReportMenu(myScanner)){
+                    if (displayReportMenu(myScanner)) {
                         //Add this return to make sure when H is hit in reportMenu, it will shutdown
                         //This method too.
                         return;
@@ -479,6 +479,7 @@ public class AccountingLedgerApp {
                 (3) Year To Date
                 (4) Previous Year To Date
                 (5) Search By Vendor
+                (6) Custom Search
                 (0) Exit to Ledger Menu
                 (H) Exit to Home Menu""");
         //Save users input
@@ -516,6 +517,11 @@ public class AccountingLedgerApp {
                     break;
                 case "5":
                     displaySearchByVendor(readTransactions());
+                    break;
+                case "6":
+                    if (CustomSearchMenu(myScanner)) {
+                        return true;
+                    }
                     break;
                 case "0":
                     System.out.println("Exiting the Report Menu");
@@ -752,11 +758,86 @@ public class AccountingLedgerApp {
             }
 
 
+        }
+    }
+
+    //Create a custom search method
+    //Can have Start Date,End Date,Description,Vendor,Amount
+    public static String displayCustomSearch(Scanner myScanner) {
+        //Add scanner
+        myScanner = new Scanner(System.in);
+
+        //Welcome user
+        System.out.println("====== Welcome To The Custom Search Menu ======");
+
+        //Prompt user for input selection
+        //Selections : 1,2,3,4,5 and 0 to exit
+        System.out.println("""
+                Which option would you like to choose?
+                (S) Start Date
+                (E) End Date
+                (D) Description
+                (V) Vendor
+                (A) Amount
+                (L) Exit Custom Search
+                (H) Exit to Home Menu""");
+        //Save users input
+        //toUpperCase so capitalization doesn't matter
+
+        return myScanner.nextLine().toUpperCase();
+
+    }
+
+    //Method for displaying Custom Search menu
+    //Case switches ---> 1,2,3,4,5,0, and H(Home)
+    //Add switch statement
+    //boolean statement run the while loop
+    //while loop to keep app running until exited
+    //Make method Boolean so it can have a stopping return
+    public static Boolean CustomSearchMenu(Scanner myScanner) {
+
+        //boolean to keep the app running
+        boolean appRunning = true;
+
+        while (appRunning) {
+
+            //User input
+            String input = displayCustomSearch(myScanner);
+
+            switch (input) {
+                case "S":
+                    System.out.println("Custom Search");
+                    break;
+                case "E":
+                    System.out.println("Custom Search");
+                    break;
+                case "D":
+                    System.out.println("Custom Search");
+                    break;
+                case "V":
+                    displaySearchByVendor(readTransactions());
+                    break;
+                case "A":
+                    System.out.println("Custom Search");
+                case "L":
+                    System.out.println("Leaving Custom Search");
+                    return false;
+                case "H":
+                    System.out.println("Going to Home Menu");
+                    return true;
+
+                default:
+                    System.out.println("Invalid input");
+
             }
         }
+        //Add return
+        return false;
+    }
+
 
     //End of methods
-    }
+}
 
 
 
