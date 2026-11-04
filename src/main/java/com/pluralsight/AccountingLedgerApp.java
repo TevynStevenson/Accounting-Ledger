@@ -808,7 +808,7 @@ public class AccountingLedgerApp {
                     searchByStartDate(readTransactions());
                     break;
                 case "E":
-                    System.out.println("Custom Search");
+                    searchByEndDate(readTransactions());
                     break;
                 case "D":
                     searchByDescription(readTransactions());
@@ -951,6 +951,44 @@ public class AccountingLedgerApp {
         }
     }
 
+    //Make a method to search by end date
+    //Will have to parse to get the correct output
+    public static void searchByEndDate(ArrayList<Transaction>transactions){
+
+        //Initialize scanner
+        Scanner myScanner = new Scanner(System.in);
+
+        //Prompt user to enter the end date
+        //Welcome message
+        System.out.println("====== Welcome To The Search By End Date=====");
+        System.out.println("Enter end date of the transaction (YYYY-MM-DD)");
+
+        //Store users input
+        String userInput = myScanner.nextLine();
+
+        //Initialize dates
+        LocalDate endDate = LocalDate.parse(userInput);
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop
+        for (Transaction transaction : transactions) {
+            if (!transaction.getDate().isAfter(endDate)) {
+
+                System.out.println(transaction);
+            }
+        }
+
+
+    }
 
 
 
