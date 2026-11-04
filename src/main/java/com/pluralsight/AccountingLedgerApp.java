@@ -506,7 +506,7 @@ public class AccountingLedgerApp {
                     displayPreviousYear(readTransactions());
                     break;
                 case "5":
-                    System.out.println("Search By Vendor");
+                    displaySearchByVendor(readTransactions());
                     break;
                 case "0":
                     System.out.println("Exiting the Report Menu");
@@ -697,6 +697,47 @@ public class AccountingLedgerApp {
 
 
     }
+
+    //Create a search by vendor method
+    //Prompt user to enter the vendor name
+    //Use . equalsIgnoreCase so capitalization doesn't matter
+    //Use .contains() for partial inputs Nike ---> Nike Inc.
+    public static void displaySearchByVendor(ArrayList<Transaction> transactions) {
+
+        //Prompt user to input vendor
+        Scanner myScanner = new Scanner(System.in);
+
+        //Welcome message
+        System.out.println("====== Welcome To The Search By Vendor Menu ======");
+        System.out.println("Enter the name of your vendor");
+
+        //Save users input
+        String vendor = myScanner.nextLine();
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Loop through thre transactions
+        for (Transaction transaction : transactions) {
+
+            //Add if statement for if the users vendor matches the vendors on file
+            if (transaction.getVendor().equalsIgnoreCase(vendor)){
+
+                //Print transactions
+                System.out.println(transaction);
+
+            }
+        }
+    }
+
+
 
 //End of methods
 }
