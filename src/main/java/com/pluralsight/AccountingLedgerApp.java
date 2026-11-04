@@ -497,7 +497,7 @@ public class AccountingLedgerApp {
                     displayMonthToDate(readTransactions());
                     break;
                 case "2":
-                    System.out.println("Previous Month To Date");
+                    displayPreviousMonth(readTransactions());
                     break;
                 case "3":
                     System.out.println("Year To Date");
@@ -523,7 +523,7 @@ public class AccountingLedgerApp {
     //First day of the current month through today's date
     //LocalDate.Now() to get todays date
     //.withDayOfMonth(1) to get first day of current month
-    public static void displayMonthToDate(ArrayList<Transaction>transactions){
+    public static void displayMonthToDate(ArrayList<Transaction> transactions) {
 
         //Get the first day of the month
         LocalDate today = LocalDate.now();
@@ -557,17 +557,54 @@ public class AccountingLedgerApp {
             }
         }
 
+    }
 
+    //Create a report that display transactions
+    //First day of the current month through today's date
+    //LocalDate.Now() to get todays date
+    //.withDayOfMonth(1) to get first day of current month
+    public static void displayPreviousMonth(ArrayList<Transaction> transactions) {
 
+        //Get todays date
+        LocalDate today = LocalDate.now();
 
+        //Get start of previous month
+        LocalDate startOfCurrentMonth = today.withDayOfMonth(1);
+
+        //Find last day of the month
+        LocalDate startOfPreviousMonth = startOfCurrentMonth.minusMonths(1);
+
+        //Get last day of previous month
+        LocalDate endOfPreviousMonth = startOfCurrentMonth.minusDays(1);
+
+        //Print message
+        System.out.println("Previous Month To Date Report");
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop
+        for (Transaction transaction : transactions) {
+
+            //Get previous month
+            LocalDate recordDate = transaction.getDate();
+
+            //Add if statement
+            if (!recordDate.isBefore(startOfPreviousMonth) && !recordDate.isAfter(endOfPreviousMonth)) {
+
+                //Print out transactions
+                System.out.println(transaction);
+            }
 
         }
-
-
-
-
-
-
+    }
 
 
 //End of methods
