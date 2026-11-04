@@ -503,7 +503,7 @@ public class AccountingLedgerApp {
                     displayYearToDate(readTransactions());
                     break;
                 case "4":
-                    System.out.println("Previous Year To Date");
+                    displayPreviousYear(readTransactions());
                     break;
                 case "5":
                     System.out.println("Search By Vendor");
@@ -650,9 +650,56 @@ public class AccountingLedgerApp {
     }
 
 
+    //Create a report that displays transactions
+    //Previous Year To Date report
+    //LocalDate.now().minusYears(1) to determine the previous year
+    //.withDayOfYear(1) to find January 1.
+    public static void displayPreviousYear(ArrayList<Transaction> transactions) {
+
+        //Get today's date
+        LocalDate today = LocalDate.now();
+
+        //Get current year date
+        LocalDate startOfCurrentYear = today.withDayOfYear(1);
+
+        //Get the start of the previous year
+        LocalDate startOfPreviousYear = startOfCurrentYear.minusYears(1);
+
+        //Get the end of the previous year
+        LocalDate endOfPreviousYear = startOfCurrentYear.minusDays(1);
+
+        //Report message
+        System.out.println("Previous Year To Date Report");
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop to run until there are no more transactions
+        for (Transaction transaction : transactions) {
+
+            //Make the target date
+            LocalDate targetDate = transaction.getDate();
+
+            //Make if statement
+            if (!targetDate.isBefore(startOfPreviousYear) && !targetDate.isAfter(endOfPreviousYear)) {
+
+                //Print out Year To Date Report
+                System.out.println(transaction);
+            }
+        }
+
+
+    }
+
 //End of methods
 }
-
 
 
 
