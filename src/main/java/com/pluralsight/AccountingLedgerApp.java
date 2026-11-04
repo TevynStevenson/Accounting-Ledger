@@ -343,8 +343,9 @@ public class AccountingLedgerApp {
 
     //method for displayLedgerMenu options menu
     //Name displayLedgerMenu
+    //Case switches A,D,P,R,L, and Default
     //boolean statement to run while loop
-    //While loop to keep app running until exited
+    //while loop to keep app running until exited
     public static void displayLedgerMenu(Scanner myScanner) {
 
         //Initialize boolean statement to keep running until exited
@@ -473,7 +474,8 @@ public class AccountingLedgerApp {
                 (3) Year To Date
                 (4) Previous Year To Date
                 (5) Search By Vendor
-                (0) Exit""");
+                (0) Exit to Ledger Menu
+                (H) Exit to Home Menu""");
         //Save users input
         //toUpperCase so capitalization doesn't matter
 
@@ -482,6 +484,7 @@ public class AccountingLedgerApp {
     }
 
     //Method for displaying reportsMenu
+    //Case switches ---> 1,2,3,4,5,0, and H(Home)
     //Add switch statement
     //boolean statement run the while loop
     //while loop to keep app running until exited
@@ -512,6 +515,8 @@ public class AccountingLedgerApp {
                     System.out.println("Exiting the Report Menu");
                     appRunning = false;
                     break;
+                case "H":
+                    displayHomeScreen(myScanner);
                 default:
                     System.out.println("Invalid input");
 
