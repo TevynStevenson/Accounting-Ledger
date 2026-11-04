@@ -733,7 +733,7 @@ public class AccountingLedgerApp {
         for (Transaction transaction : transactions) {
 
             //Add if statement for if the users vendor matches the vendors on file
-            if (transaction.getVendor().equalsIgnoreCase(vendor)){
+            if (transaction.getVendor().contains(vendor.toLowerCase())) {
 
                 //Print transactions
                 System.out.println(transaction);
