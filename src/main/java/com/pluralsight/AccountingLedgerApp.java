@@ -805,7 +805,7 @@ public class AccountingLedgerApp {
 
             switch (input) {
                 case "S":
-                    System.out.println("Custom Search");
+                    searchByStartDate(readTransactions());
                     break;
                 case "E":
                     System.out.println("Custom Search");
@@ -906,6 +906,48 @@ public class AccountingLedgerApp {
 
                 System.out.println(transaction);
             }
+        }
+    }
+
+    //Add a method to search by start date
+    //Will have to use .parse to get the correct input
+    public static void searchByStartDate(ArrayList<Transaction> transactions) {
+
+        //Initialize scanner
+        Scanner myScanner = new Scanner(System.in);
+
+        //Prompt user to input the start date
+        //Welcome message
+        System.out.println("====== Welcome To The Search By Start Date=====");
+        System.out.println("Enter start date of the transaction (YYYY-MM-DD)");
+
+        //Save users input
+        String userInput = myScanner.nextLine();
+
+        //Add localDate for the startDate
+        LocalDate startDate = LocalDate.parse(userInput);
+
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop
+        for (Transaction transaction : transactions) {
+
+
+            //Add if statement
+            if (!transaction.getDate().isBefore(startDate)) {
+
+                System.out.println(transaction);
+            }
+
         }
     }
 
