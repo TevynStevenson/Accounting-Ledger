@@ -368,7 +368,11 @@ public class AccountingLedgerApp {
                     displayTransactions(readPayments());
                     break;
                 case "R":
-                    displayReportMenu(myScanner);
+                    if (displayReportMenu(myScanner)){
+                        //Add this return to make sure when H is hit in reportMenu, it will shutdown
+                        //This method too.
+                        return;
+                    }
                     break;
                 case "L":
                     System.out.println("Thank you for using the Ledger Menu");
@@ -379,6 +383,7 @@ public class AccountingLedgerApp {
 
             }
         }
+
     }
 
     //Create a method to filter and display deposits only
@@ -488,7 +493,8 @@ public class AccountingLedgerApp {
     //Add switch statement
     //boolean statement run the while loop
     //while loop to keep app running until exited
-    public static void displayReportMenu(Scanner myScanner) {
+    //Make method Boolean so it can have a stopping return
+    public static Boolean displayReportMenu(Scanner myScanner) {
         //Add arrayList
 
 
@@ -513,15 +519,18 @@ public class AccountingLedgerApp {
                     break;
                 case "0":
                     System.out.println("Exiting the Report Menu");
-                    appRunning = false;
-                    break;
+                    return false;
                 case "H":
-                    displayHomeScreen(myScanner);
+                    System.out.println("Going to Home Menu");
+                    return true;
+
                 default:
                     System.out.println("Invalid input");
 
             }
         }
+        //Add return
+        return false;
     }
 
     //Create a report that display transactions
@@ -733,19 +742,26 @@ public class AccountingLedgerApp {
         for (Transaction transaction : transactions) {
 
             //Add if statement for if the users vendor matches the vendors on file
-            if (transaction.getVendor().contains(vendor.toLowerCase())) {
+            //Gonna ask about it
+            //if (transaction.getVendor().contains(vendor.toLowerCase())) {
 
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
                 //Print transactions
                 System.out.println(transaction);
 
             }
+
+
+            }
         }
+
+    //End of methods
     }
 
 
 
-//End of methods
-}
+
+
 
 
 
