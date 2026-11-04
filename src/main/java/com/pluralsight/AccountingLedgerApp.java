@@ -500,7 +500,7 @@ public class AccountingLedgerApp {
                     displayPreviousMonth(readTransactions());
                     break;
                 case "3":
-                    System.out.println("Year To Date");
+                    displayYearToDate(readTransactions());
                     break;
                 case "4":
                     System.out.println("Previous Year To Date");
@@ -560,9 +560,9 @@ public class AccountingLedgerApp {
     }
 
     //Create a report that display transactions
-    //First day of the current month through today's date
+    //First day of the previous month through today's date
     //LocalDate.Now() to get todays date
-    //.withDayOfMonth(1) to get first day of current month
+    //.withDayOfMonth(1) to get first day of previous month
     public static void displayPreviousMonth(ArrayList<Transaction> transactions) {
 
         //Get todays date
@@ -604,6 +604,49 @@ public class AccountingLedgerApp {
             }
 
         }
+    }
+
+
+    //Create a report that displays transactions
+    //Year To Date report
+    //LocalDate.now().withDayOfYear(1) to get January 1.
+    //Use today's date as the ending date.
+    public static void displayYearToDate(ArrayList<Transaction> transactions) {
+
+        //Get today's date
+        LocalDate today = LocalDate.now();
+
+        //Get current year date
+        LocalDate startOfCurrentYear = today.withDayOfYear(1);
+
+        //Report message
+        System.out.println("Year To Date Report");
+
+        //Sort the transactions from bottom to top instead of top to bottom
+        //Use Collections.Sort()
+        //Must import
+        //Put before the for loop
+        transactions.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed()
+        );
+
+        //Add for loop to run until there are no more transactions
+        for (Transaction transaction : transactions) {
+
+            //Make the target date
+            LocalDate targetDate = transaction.getDate();
+
+            //Make if statement
+            if (!targetDate.isBefore(startOfCurrentYear) && !targetDate.isAfter(today)) {
+
+                //Print out Year To Date Report
+                System.out.println(transaction);
+            }
+        }
+
+
     }
 
 
