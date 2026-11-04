@@ -97,17 +97,18 @@ public class Transaction {
 //.Trim to cut off unnecessary space
     public Transaction(String date, String time, String description, String vendor, double amount) {
 
-        this.date = LocalDate.parse(date.trim());
-
         //Had to this way to get entire csv file to run
         //If deleted would only need HH:mm:ss
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[H:mm:ss][HH:mm:ss][H:mm][HH:mm]");
-        this.time = LocalTime.parse(time.trim(), formatter);
 
+        this.date = LocalDate.parse(date.trim());
+        this.time = LocalTime.parse(time.trim(), formatter);
         this.description = description;
         this.vendor = vendor;
         this.amount = amount;
     }
+
+
 
 
 }
