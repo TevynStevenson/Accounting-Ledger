@@ -365,7 +365,7 @@ public class AccountingLedgerApp {
                     displayTransactions(readDeposits());
                     break;
                 case "P":
-                    System.out.println("Payment");
+                    displayTransactions(readPayments());
                     break;
                 case "R":
                     System.out.println("Report");
@@ -408,6 +408,45 @@ public class AccountingLedgerApp {
 
 
 }
+    //Create a method to filter and display deposits only
+    //Use an if statement to check whether the amount is >0
+    //Return a new ArrayList
+    public static ArrayList<Transaction> readPayments() {
+        //Initialize new array list
+        ArrayList<Transaction> payments = new ArrayList<>();
+
+        //Get all the transactions from the csv file
+        ArrayList<Transaction> transactions = readTransactions();
+
+        //Loop through all of the transactions
+        for (Transaction transaction : transactions) {
+
+            //Check if the amount is positive
+            if (transaction.getAmount() < 0){
+
+                //If positive, it will be added to the deposits arraylist
+                payments.add(transaction);
+            }
+
+        }
+        //Return the deposits arrayList
+        return payments;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
