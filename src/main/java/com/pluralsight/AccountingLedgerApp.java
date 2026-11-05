@@ -523,8 +523,32 @@ public class AccountingLedgerApp {
         //Add scanner
         myScanner = new Scanner(System.in);
 
-        //Welcome user
-        System.out.println("====== Welcome To The Reports Menu ======");
+
+        // Add try/catch statement
+        //Run thread.sleep() to delay messages
+        try {
+            //Welcome user
+            System.out.println("|$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$|");
+            Thread.sleep(500);
+            System.out.println("|                                         |");
+            Thread.sleep(500);
+            System.out.println("|                                         |");
+            System.out.println("|====== Welcome To The Reports Menu ======|");
+            Thread.sleep(500);
+            System.out.println("|                                         |");
+            System.out.println("|                                         |");
+            Thread.sleep(500);
+            System.out.println("|$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$|");
+            Thread.sleep(500);
+
+            System.out.println("[SYSTEM] Access Granted.....\n");
+            Thread.sleep(500);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
 
         //Prompt user for input selection
         //Selections : 1,2,3,4,5 and 0 to exit
