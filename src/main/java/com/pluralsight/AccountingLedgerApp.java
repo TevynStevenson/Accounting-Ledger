@@ -79,30 +79,32 @@ public class AccountingLedgerApp {
 
         //Add try/catch to be able to delay messages
         try {
-            System.out.println("==================================================");
-            Thread.sleep(500);
-            System.out.println("                                                    ");
+            System.out.println("|===========================================|");
+            Thread.sleep(200);
+            System.out.println("|                                           |");
 
-            System.out.println("           BANKING SUPREME  |  EST. 2026           ");
-            Thread.sleep(500);
-            System.out.println("                                                    ");
+            System.out.println("|         BANKING SUPREME  |  EST. 2026     |");
+            Thread.sleep(200);
+            System.out.println("|                                           |");
 
-            System.out.println("             YOUR FINANCES. YOUR CONTROL.          ");
-            Thread.sleep(500);
-            System.out.println("                                                    ");
-            System.out.println("==================================================");
-            Thread.sleep(700);
-            System.out.println("             SECURE BANKING PORTAL                 ");
-            System.out.println();
+            System.out.println("|          YOUR FINANCES. YOUR CONTROL.     |");
+            Thread.sleep(200);
+            System.out.println("|                                           |");
+            System.out.println("|===========================================|");
+            Thread.sleep(200);
+            System.out.println("|           SECURE BANKING PORTAL           |");
+            System.out.println("|===========================================|");
+            Thread.sleep(1000);
 
             //Add real banking initialization
             //Initializing, Loading, Secure session
-            System.out.println("[SYSTEM] Initializing Banking Supreme....");
+            System.out.println("|[SYSTEM] Initializing Banking Supreme....  |");
             Thread.sleep(1000);
-            System.out.println("[SYSTEM] Financial Ledger Loading........");
+            System.out.println("|[SYSTEM] Financial Ledger Loading........  |");
             Thread.sleep(1000);
-            System.out.println("[SYSTEM] Secure session ready!\n");
+            System.out.println("|[SYSTEM] Secure session ready!             |");
             Thread.sleep(1500);
+            System.out.println("|===========================================|");
 
         } catch (InterruptedException e) {
             System.out.println("[SYSTEM] System initialization interrupted");
@@ -110,11 +112,13 @@ public class AccountingLedgerApp {
 
         //Prompt user to input selection
         System.out.println("""
-                Which option would you like to choose?
-                (D)Add Deposit
-                (P)Make Payment
-                (L)Ledger
-                (X)Exit""");
+                |===========================================|
+                | Which option would you like to choose?    |
+                | (D)Add Deposit                            |
+                | (P)Make Payment                           |
+                | (L)Ledger                                 |
+                | (X)Exit                                   |
+                |===========================================|""");
         //Save users input
 
         //return users input
@@ -365,32 +369,32 @@ public class AccountingLedgerApp {
 
 
             //Welcome user
-            System.out.println("======================================= ");
+            System.out.println("|===========================================|");
             Thread.sleep(500);
-            System.out.println("                                        ");
-            System.out.println("                                        ");
-            System.out.println("       Welcome To The Ledger Menu       ");
+            System.out.println("|                                           |");
+            System.out.println("|                                           |");
+            System.out.println("|      Welcome To The Ledger Menu           |");
             Thread.sleep(500);
-            System.out.println("                                        ");
-            System.out.println("                                        ");
+            System.out.println("|                                           |");
+            System.out.println("|                                           |");
             Thread.sleep(500);
-            System.out.println("======================================= \n");
+            System.out.println("|===========================================|");
             Thread.sleep(1500);
-
+            System.out.println("|===========================================|");
+            //Prompt user for input selection
+            //Selections : A,D,P,R, and H
+            System.out.println("""
+                    |Which option would you like to choose?     |
+                    | (A) All Transactions                      |
+                    | (D) Deposits                              |
+                    | (P) Payments                              |
+                    | (R) Reports                               |
+                    | (L) Exit                                  |""");
+            System.out.println("|===========================================|");
             //Add catch statement to allow Thread.sleep() to run
         } catch (InterruptedException e) {
             System.out.println("Error loading menu");
         }
-
-        //Prompt user for input selection
-        //Selections : A,D,P,R, and H
-        System.out.println("""
-                Which option would you like to choose?
-                (A) All Transactions
-                (D) Deposits
-                (P) Payments
-                (R) Reports
-                (L) Exit""");
         //Save users input
         //toUpperCase so capitalization doesn't matter
 
@@ -528,40 +532,41 @@ public class AccountingLedgerApp {
         //Run thread.sleep() to delay messages
         try {
             //Welcome user
-            System.out.println("|$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$|");
-            Thread.sleep(500);
-            System.out.println("|                                         |");
+            System.out.println("[SYSTEM] Access Granted.....\n");
+            Thread.sleep(1000);
+            System.out.println("|=========================================|");
             Thread.sleep(500);
             System.out.println("|                                         |");
             System.out.println("|====== Welcome To The Reports Menu ======|");
+            Thread.sleep(1000);
+            System.out.println("|                                         |");
+            //Prompt user for input selection
+            //Selections : 1,2,3,4,5 and 0 to exit
+            System.out.println("|=========================================|");
+            System.out.println("""
+                    | Which option would you like to choose?  |
+                    | (1) Month To Date                       |
+                    | (2) Previous Month To Date              |
+                    | (3) Year To Date                        |
+                    | (4) Previous Year To Date               |
+                    | (5) Search By Vendor                    |
+                    | (6) Custom Search                       |
+                    | (0) Exit to Ledger Menu                 |
+                    | (H) Exit to Home Menu                   |""");
+            Thread.sleep(500);
+            System.out.println("|=========================================|");
+            System.out.println("|                                         |");
             Thread.sleep(500);
             System.out.println("|                                         |");
-            System.out.println("|                                         |");
             Thread.sleep(500);
-            System.out.println("|$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$|");
+            System.out.println("|=========================================|");
             Thread.sleep(500);
 
-            System.out.println("[SYSTEM] Access Granted.....\n");
-            Thread.sleep(500);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-
-
-        //Prompt user for input selection
-        //Selections : 1,2,3,4,5 and 0 to exit
-        System.out.println("""
-                Which option would you like to choose?
-                (1) Month To Date
-                (2) Previous Month To Date
-                (3) Year To Date
-                (4) Previous Year To Date
-                (5) Search By Vendor
-                (6) Custom Search
-                (0) Exit to Ledger Menu
-                (H) Exit to Home Menu""");
         //Save users input
         //toUpperCase so capitalization doesn't matter
 
@@ -855,20 +860,50 @@ public class AccountingLedgerApp {
         //Add scanner
         myScanner = new Scanner(System.in);
 
-        //Welcome user
-        System.out.println("====== Welcome To The Custom Search Menu ======");
+        //add try/catch to use thread.sleep
+        try {
+            //Welcome user
+            System.out.println("|========================================|");
+            Thread.sleep(500);
+            System.out.println("|                                        |");
+            Thread.sleep(500);
+            System.out.println("|           Custom Search Engine         |");
+            Thread.sleep(500);
+            System.out.println("|                                        |");
+            System.out.println("|========================================|");
+            Thread.sleep(500);
+            System.out.println("|                                        |");
+            System.out.println("|        [ SYSTEM STATUS: ONLINE ]       |");
+            Thread.sleep(1000);
+            System.out.println("|        [ SEARCH ENGINE: READY ]        |");
+            Thread.sleep(1000);
+            System.out.println("|                                        |");
+            System.out.println("|========================================|");
+            Thread.sleep(500);
+            System.out.println("|                                        |");
+            System.out.println("|     Welcome To The Custom Search Menu  |");
+            Thread.sleep(1000);
+            System.out.println("|       What Would You Like To Do?       |");
+            //Prompt user for input selection
+            //Selections : 1,2,3,4,5 and 0 to exit
+            System.out.println("""
+                    | (S) Start Date                         |
+                    | (E) End Date                           |
+                    | (D) Description                        |
+                    | (V) Vendor                             |
+                    | (A) Amount                             |
+                    | (L) Exit Custom Search                 |
+                    | (H) Exit to Home Menu                  |""");
+            //Save users input
+            //toUpperCase so capitalization doesn't mat
+            System.out.println("|                                        |");
+            Thread.sleep(500);
+            System.out.println("|========================================|");
+        } catch (Exception e) {
+            System.out.println("Search Engine Failure");
+            throw new RuntimeException(e);
+        }
 
-        //Prompt user for input selection
-        //Selections : 1,2,3,4,5 and 0 to exit
-        System.out.println("""
-                Which option would you like to choose?
-                (S) Start Date
-                (E) End Date
-                (D) Description
-                (V) Vendor
-                (A) Amount
-                (L) Exit Custom Search
-                (H) Exit to Home Menu""");
         //Save users input
         //toUpperCase so capitalization doesn't matter
 
@@ -1081,6 +1116,7 @@ public class AccountingLedgerApp {
 
 
     //End of methods
+
 }
 
 
