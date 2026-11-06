@@ -534,32 +534,32 @@ public class AccountingLedgerApp {
             //Welcome user
             System.out.println("[SYSTEM] Access Granted.....\n");
             Thread.sleep(1000);
-            System.out.println("|=========================================|");
+            System.out.println("|===========================================|");
             Thread.sleep(500);
-            System.out.println("|                                         |");
-            System.out.println("|====== Welcome To The Reports Menu ======|");
+            System.out.println("|                                           |");
+            System.out.println("|======= Welcome To The Reports Menu =======|");
             Thread.sleep(1000);
-            System.out.println("|                                         |");
+            System.out.println("|                                           |");
             //Prompt user for input selection
             //Selections : 1,2,3,4,5 and 0 to exit
-            System.out.println("|=========================================|");
+            System.out.println("|===========================================|");
             System.out.println("""
-                    | Which option would you like to choose?  |
-                    | (1) Month To Date                       |
-                    | (2) Previous Month To Date              |
-                    | (3) Year To Date                        |
-                    | (4) Previous Year To Date               |
-                    | (5) Search By Vendor                    |
-                    | (6) Custom Search                       |
-                    | (0) Exit to Ledger Menu                 |
-                    | (H) Exit to Home Menu                   |""");
+                    | Which option would you like to choose?    |
+                    | (1) Month To Date                         |
+                    | (2) Previous Month To Date                |
+                    | (3) Year To Date                          |
+                    | (4) Previous Year To Date                 |
+                    | (5) Search By Vendor                      |
+                    | (6) Custom Search                         |
+                    | (0) Exit to Ledger Menu                   |
+                    | (H) Exit to Home Menu                     |""");
             Thread.sleep(500);
-            System.out.println("|=========================================|");
-            System.out.println("|                                         |");
+            System.out.println("|===========================================|");
+            System.out.println("|                                           |");
             Thread.sleep(500);
-            System.out.println("|                                         |");
+            System.out.println("|                                           |");
             Thread.sleep(500);
-            System.out.println("|=========================================|");
+            System.out.println("|===========================================|");
             Thread.sleep(500);
 
 
